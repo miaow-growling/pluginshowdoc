@@ -1,0 +1,41 @@
+<idea-plugin>
+<!-- 插件ID -->
+  <id>com.yuanshuai.tool.idea.showdoc</id>
+<!-- 插件名称 -->
+  <name>iedaShowdocPlugin</name>
+<!-- 插件版本 -->
+  <version>1.0</version>
+<!-- 插件提供者 -->
+  <vendor email="yuanshuai@mybns.cn" url="">yuanshuai</vendor>
+<!-- 插件简介 -->
+  <description><![CDATA[
+      idea showdoc插件<br>
+      功能待定，慢慢开发。能搞出什么样搞出什么样子<br>
+      其他都是一些不想关的描述了
+      1. showdoc注释模板，输入showdoc后自动生成
+      2. 右键菜单增加showdoc，子菜单-config（配置） 子菜单-createApiDoc（根据当前文件生成docapi）
+      ]]></description>
+
+<!-- 插件更新日志 -->
+  <change-notes><![CDATA[
+      20210110 启动项目
+    ]]>
+  </change-notes>
+
+  <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="173.0"/>
+
+  <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+<!-- 动作 -->
+  <actions>
+    <!-- Add your actions here -->
+  </actions>
+
+</idea-plugin>
