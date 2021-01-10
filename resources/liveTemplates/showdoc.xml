@@ -1,0 +1,7 @@
+<templateSet group="showdoc">
+    <template name="showdoc" value="/** &#10; * showdoc&#10; * @catalog 目录&#10; * @title 接口标题&#10; * @description 接口描述&#10; * @method 接口请求方法&#10; * @url 接口请求地址&#10; * @header 字段 可选/必选 类型 字段说明&#10; * @param 字段 可选/必选 类型 字段说明&#10; * @return 返回数据&#10; * @return_param 字段名称 类型 字段说明&#10; * @remark 备注信息&#10; * @number 排序信息 &#10; */" description="showdoc" toReformat="false" toShortenFQNames="true">
+        <context>
+            <option name="PHP Class Member" value="true" />
+        </context>
+    </template>
+</templateSet>

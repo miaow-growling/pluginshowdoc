@@ -30,12 +30,11 @@
   <depends>com.intellij.modules.platform</depends>
 
   <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
+    <defaultLiveTemplates file="/liveTemplates/showdoc.xml" />
   </extensions>
 
 <!-- 动作 -->
   <actions>
     <!-- Add your actions here -->
   </actions>
-
 </idea-plugin>
