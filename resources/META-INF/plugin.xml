@@ -32,11 +32,12 @@
   <extensions defaultExtensionNs="com.intellij">
     <defaultLiveTemplates file="/liveTemplates/showdoc.xml" />
     <projectConfigurable groupId="tools" id="com.yuanshuai.idea.showdoc" instance="com.yuanshuai.idea.config.ShowDocConfigSetting"/>
+    <projectService serviceImplementation="com.yuanshuai.idea.config.ShowDocState" serviceInterface="com.yuanshuai.idea.config.ShowDocState"/>
   </extensions>
 
 <!-- 动作 -->
   <actions>
-    <action id="yuanshuai.idea.showdoc.generate" class="com.yuanshuai.idea.action.GenerateApiAction" text="generate" description="生成API">
+    <action id="yuanshuai.idea.showdoc.generate" class="com.yuanshuai.idea.action.GenerateApiAction" text="showDoc" description="生成API">
       <add-to-group group-id="ProjectViewPopupMenuRefactoringGroup" anchor="last"/>
       <add-to-group group-id="EditorPopupMenu2" anchor="first"/>
     </action>
