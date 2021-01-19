@@ -31,25 +31,14 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <defaultLiveTemplates file="/liveTemplates/showdoc.xml" />
+    <projectConfigurable groupId="tools" id="com.yuanshuai.idea.showdoc" instance="com.yuanshuai.idea.config.ShowDocConfigSetting"/>
   </extensions>
 
 <!-- 动作 -->
   <actions>
-    <!-- Add your actions here -->
-    <group id="showdoc.editor" text="showdoc" popup="true">
-      <!-- EditorPopupMenu 编辑页面右键菜单 -->
-      <add-to-group group-id="EditorPopupMenu2" anchor="first"/>
-    </group>
-    <group id="showdoc.project" text="showdoc" popup="true">
-      <!-- ProjectViewPopupMenu 项目页面右键菜单 -->
-      <add-to-group group-id="ProjectViewPopupMenuRefactoringGroup" anchor="last"/>
-    </group>
-    <action id="yuanshuai.idea.showdoc.config" class="com.yuanshuai.idea.action.ConfigAction" text="configure" description="配置showdoc">
-      <add-to-group group-id="showdoc.editor" />
-      <add-to-group group-id="showdoc.project" />
-    </action>
     <action id="yuanshuai.idea.showdoc.generate" class="com.yuanshuai.idea.action.GenerateApiAction" text="generate" description="生成API">
-      <add-to-group group-id="showdoc.editor" />
+      <add-to-group group-id="ProjectViewPopupMenuRefactoringGroup" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu2" anchor="first"/>
     </action>
   </actions>
 </idea-plugin>
