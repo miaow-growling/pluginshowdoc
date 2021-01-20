@@ -4,8 +4,12 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
+import com.intellij.openapi.util.text.StringUtil;
 import com.yuanshuai.idea.config.ShowDocState;
+import com.yuanshuai.idea.utils.NotificationUtil;
 import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 
 public class GenerateApiAction extends AnAction {
 
@@ -22,10 +26,39 @@ public class GenerateApiAction extends AnAction {
         this.project = anActionEvent.getProject();
         this.showDocState = ShowDocState.getInstance(project);
 
-        this.api = this.showDocState.getApi();
-        if (this.api.equals("")) {
-            Messages.showErrorDialog("请先输入API", "缺少参数");
-        }
+        this.buildParams();
     }
 
+    private void buildParams()
+    {
+        this.api = this.showDocState.getApi();
+        if (StringUtil.isEmpty(this.api)) {
+            this.api = Messages.showInputDialog("Input Api", "Input Api", Messages.getWarningIcon());
+            if (StringUtil.isEmpty(this.api)) {
+                NotificationUtil.warnNotify("Api Is Empty", this.project);
+                return;
+            }
+            this.showDocState.setApi(this.api);
+        }
+
+        this.key = this.showDocState.getKey();
+        if (StringUtil.isEmpty(this.key)) {
+            this.key = Messages.showInputDialog("Input Key", "Input Key", Messages.getWarningIcon());
+            if (StringUtil.isEmpty(this.key)) {
+                NotificationUtil.warnNotify("Key Is Empty", this.project);
+                return;
+            }
+            this.showDocState.setApi(this.key);
+        }
+
+        this.token = this.showDocState.getToken();
+        if (StringUtil.isEmpty(this.token)) {
+            this.token = Messages.showInputDialog("Input Token", "Input Token", Messages.getWarningIcon());
+            if (StringUtil.isEmpty(this.token)) {
+                NotificationUtil.warnNotify("Token Is Empty", this.project);
+                return;
+            }
+            this.showDocState.setApi(this.token);
+        }
+    }
 }

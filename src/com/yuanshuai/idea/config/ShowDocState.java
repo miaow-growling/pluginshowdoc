@@ -11,8 +11,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 
 @State(
-        name = "ShowDocConfig",
-        storages = {@com.intellij.openapi.components.Storage(file = "$APP_CONFIG$/ShowDocConfig.xml")}
+        name = "ShowDocConfig"
+        // storages = {@com.intellij.openapi.components.Storage(file = "$APP_CONFIG$/ShowDocConfig.xml")}
         )
 public class ShowDocState implements PersistentStateComponent<Element> {
 
