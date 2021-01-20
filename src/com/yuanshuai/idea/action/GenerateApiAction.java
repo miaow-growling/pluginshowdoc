@@ -24,14 +24,15 @@ public class GenerateApiAction extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
         this.project = anActionEvent.getProject();
-        this.showDocState = ShowDocState.getInstance(project);
-
+        this.showDocState = ShowDocState.getInstance(this.project);
         this.buildParams();
+
     }
 
     private void buildParams()
     {
         this.api = this.showDocState.getApi();
+        System.out.println("api:" + this.api);
         if (StringUtil.isEmpty(this.api)) {
             this.api = Messages.showInputDialog("Input Api", "Input Api", Messages.getWarningIcon());
             if (StringUtil.isEmpty(this.api)) {
@@ -42,23 +43,25 @@ public class GenerateApiAction extends AnAction {
         }
 
         this.key = this.showDocState.getKey();
+        System.out.println("key:" + this.key);
         if (StringUtil.isEmpty(this.key)) {
             this.key = Messages.showInputDialog("Input Key", "Input Key", Messages.getWarningIcon());
             if (StringUtil.isEmpty(this.key)) {
                 NotificationUtil.warnNotify("Key Is Empty", this.project);
                 return;
             }
-            this.showDocState.setApi(this.key);
+            this.showDocState.setKey(this.key);
         }
 
         this.token = this.showDocState.getToken();
+        System.out.println("token:" + this.token);
         if (StringUtil.isEmpty(this.token)) {
             this.token = Messages.showInputDialog("Input Token", "Input Token", Messages.getWarningIcon());
             if (StringUtil.isEmpty(this.token)) {
                 NotificationUtil.warnNotify("Token Is Empty", this.project);
                 return;
             }
-            this.showDocState.setApi(this.token);
+            this.showDocState.setToken(this.token);
         }
     }
 }

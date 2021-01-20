@@ -1,8 +1,6 @@
 package com.yuanshuai.idea.config;
 
-import com.intellij.openapi.components.PersistentStateComponent;
-import com.intellij.openapi.components.ServiceManager;
-import com.intellij.openapi.components.State;
+import com.intellij.openapi.components.*;
 import com.intellij.openapi.project.Project;
 import org.jdom.Element;
 import org.jetbrains.annotations.NotNull;
@@ -10,10 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-@State(
-        name = "ShowDocConfig"
-        // storages = {@com.intellij.openapi.components.Storage(file = "$APP_CONFIG$/ShowDocConfig.xml")}
-        )
+@State(name = "ShowDocConfig", storages = {@Storage(StoragePathMacros.WORKSPACE_FILE)})
 public class ShowDocState implements PersistentStateComponent<Element> {
 
     private String api;
@@ -25,6 +20,7 @@ public class ShowDocState implements PersistentStateComponent<Element> {
 
     public static ShowDocState getInstance(@NotNull Project project)
     {
+        System.out.println(project.getBasePath());
         return ServiceManager.getService(project, ShowDocState.class);
     }
 

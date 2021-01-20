@@ -32,7 +32,7 @@
   <extensions defaultExtensionNs="com.intellij">
     <defaultLiveTemplates file="/liveTemplates/showdoc.xml" />
     <projectConfigurable groupId="tools" id="com.yuanshuai.idea.showdoc" instance="com.yuanshuai.idea.config.ShowDocConfigSetting"/>
-    <projectService serviceImplementation="com.yuanshuai.idea.config.ShowDocState" serviceInterface="com.yuanshuai.idea.config.ShowDocState"/>
+    <projectService serviceImplementation="com.yuanshuai.idea.config.ShowDocState" />
   </extensions>
 
 <!-- 动作 -->
