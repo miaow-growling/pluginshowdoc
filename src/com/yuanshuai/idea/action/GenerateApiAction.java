@@ -91,6 +91,7 @@ public class GenerateApiAction extends AnAction {
         }
 
         String showDocContent = showDocText.toString().replaceAll("[\r\n]", "");
+        showDocContent = showDocContent.replaceAll("&", "_this_and_change_");
 
         String url = this.api.trim() + "/server/?s=/api/open/fromComments";
 
