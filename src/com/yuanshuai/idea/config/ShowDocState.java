@@ -20,7 +20,6 @@ public class ShowDocState implements PersistentStateComponent<Element> {
 
     public static ShowDocState getInstance(@NotNull Project project)
     {
-        System.out.println(project.getBasePath());
         return ServiceManager.getService(project, ShowDocState.class);
     }
 
