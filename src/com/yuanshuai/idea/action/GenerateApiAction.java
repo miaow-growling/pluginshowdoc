@@ -9,27 +9,17 @@ import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.psi.*;
 import com.yuanshuai.idea.config.ShowDocState;
 import com.yuanshuai.idea.utils.NotificationUtil;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpStatus;
-import org.apache.commons.httpclient.NameValuePair;
-import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.jetbrains.annotations.NotNull;
 
-import javax.naming.Name;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -71,11 +61,20 @@ public class GenerateApiAction extends AnAction {
 
     private void uploadApiByFile(PsiFile psiFile)
     {
-        String fileContext = psiFile.getText();
-        if (!fileContext.contains("showdoc")) {
-            System.out.println(psiFile.getOriginalFile().getName() + "文件不包含showdoc关键字");
+        String fileName = psiFile.getName();
+
+        if (!fileName.contains(".php")) {
+            NotificationUtil.errorNotify(fileName + "不是PHP文件", this.project);
             return;
         }
+
+        String fileContext = psiFile.getText();
+        if (!fileContext.contains("showdoc")) {
+            NotificationUtil.errorNotify(fileName + "文件不包含showdoc关键字", this.project);
+            return;
+        }
+
+        NotificationUtil.infoNotify("开始上传接口：" + fileName, this.project);
 
         String patternStr = "(/\\*{1,2}[\\s\\S]*?\\*/)";
         Pattern pattern = Pattern.compile(patternStr, Pattern.MULTILINE | Pattern.DOTALL);
@@ -90,8 +89,8 @@ public class GenerateApiAction extends AnAction {
             matcherStart = matcher.end();
         }
 
-        String showDocContent = showDocText.toString().replaceAll("[\r\n]", "");
-        showDocContent = showDocContent.replaceAll("&", "_this_and_change_");
+        // String showDocContent = showDocText.toString().replaceAll("[\r\n]", "");
+        String showDocContent = showDocText.toString().replaceAll("&", "_this_and_change_");
 
         String url = this.api.trim() + "/server/?s=/api/open/fromComments";
 
@@ -111,46 +110,14 @@ public class GenerateApiAction extends AnAction {
             HttpEntity entity = httpResponse.getEntity();
             if (!Objects.isNull(entity)) {
                 String result = EntityUtils.toString(entity, "UTF-8");
-                System.out.println("result：" + result);
+                result = result.replaceAll("\n", "");
+                result = result.trim();
+                NotificationUtil.infoNotify(fileName + "接口上传结果：" + result, this.project);
             }
-            System.out.println("233333");
         } catch (IOException ioException) {
+            NotificationUtil.errorNotify("接口上传失败：" + ioException.getMessage(), this.project);
             System.out.println(ioException.getMessage());
         }
-
-        String[] curlCommands={
-                "curl", "-H", "'Content-Type: application/x-www-form-urlencoded; charset=UTF-8'",
-                "\"" + url+ "\"", "--data-binary", "@-",
-                "<<CURL_DATA\n" + "from=shell&api_key=" + this.key + "&api_token=" + this.token + "&content=" + showDocContent + "\nCURL_DATA"
-        };
-
-        // System.out.println(Arrays.toString(curlCommands));
-
-        String result = execCurl(curlCommands);
-
-        System.out.println("结果:" + result);
-    }
-
-    public static String execCurl(String[] command) {
-        ProcessBuilder process = new ProcessBuilder(command);
-        Process p;
-        try {
-            p = process.start();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            StringBuilder builder = new StringBuilder();
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-                builder.append(line);
-                builder.append(System.getProperty("line.separator"));
-            }
-            return builder.toString();
-        } catch (IOException e) {
-            System.out.print("error");
-            e.printStackTrace();
-        } catch (Exception e) {
-            System.out.println("errorMessage:" + e.getMessage());
-        }
-        return null;
     }
 
     private void buildParams()

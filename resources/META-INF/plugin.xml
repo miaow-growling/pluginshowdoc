@@ -37,12 +37,9 @@
 
 <!-- 动作 -->
   <actions>
-    <action id="yuanshuai.idea.showdoc.generate" class="com.yuanshuai.idea.action.GenerateApiAction" text="showDoc" description="生成API" icon="/icon/showdoc.svg">
+    <action id="yuanshuai.idea.showdoc.generate" class="com.yuanshuai.idea.action.GenerateApiAction" text="showDoc" description="生成API">
       <add-to-group group-id="ProjectViewPopupMenuRefactoringGroup" anchor="last"/>
       <add-to-group group-id="EditorPopupMenu2" anchor="first"/>
-    </action>
-    <action id="IconActionId" class="com.yuanshuai.idea.action.IconAction" text="icon" description="uuuuuuuuuu" icon="/icon/showdoc.svg">
-      <add-to-group group-id="ToolsMenu" anchor="first"/>
     </action>
   </actions>
 </idea-plugin>
