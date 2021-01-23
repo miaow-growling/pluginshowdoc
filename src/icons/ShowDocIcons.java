@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public final class ShowDocIcons {
 
-    public static final Icon SHOW_DOC = IconLoader.getIcon("/icons/showdoc.ico", ShowDocIcons.class);
+    public static final Icon SHOW_DOC = IconLoader.getIcon("/icons/showdoc.svg", ShowDocIcons.class);
 
     private ShowDocIcons() {
 
