@@ -10,14 +10,18 @@
 <!-- 插件简介 -->
   <description><![CDATA[
       idea showdoc插件<br>
-      功能待定，慢慢开发。能搞出什么样搞出什么样子<br>
-      其他都是一些不想关的描述了
-      1. showdoc注释模板，输入showdoc后自动生成
-      2. 右键菜单增加showdoc，子菜单-config（配置） 子菜单-createApiDoc（根据当前文件生成docapi）
+      配置方式：
+      1. 第一次使用时，会弹窗提示输入配置。
+      2. 修改配置可以在.idea目录下的workspace.xml中的ShowDocConfig修改配置
+      使用方式：
+      1. 选中要上传接口的文件，右键。点击showDoc菜单，会上传单个文件的接口
+      2. 在编辑器里面右键也会上传当前文件的接口
+      3. 选中controller文件夹，会上传当前文件夹下所有文件的接口
       ]]></description>
 
 <!-- 插件更新日志 -->
   <change-notes><![CDATA[
+      20210123 构建第一个测试包
       20210110 启动项目
     ]]>
   </change-notes>
