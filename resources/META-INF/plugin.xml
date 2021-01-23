@@ -4,24 +4,27 @@
 <!-- 插件名称 -->
   <name>iedaShowdocPlugin</name>
 <!-- 插件版本 -->
-  <version>1.0</version>
+  <version>1.0.2</version>
 <!-- 插件提供者 -->
   <vendor email="yuanshuai@mybns.cn" url="">yuanshuai</vendor>
 <!-- 插件简介 -->
   <description><![CDATA[
-      idea showdoc插件<br>
-      配置方式：
-      1. 第一次使用时，会弹窗提示输入配置。
-      2. 修改配置可以在.idea目录下的workspace.xml中的ShowDocConfig修改配置
-      使用方式：
-      1. 选中要上传接口的文件，右键。点击showDoc菜单，会上传单个文件的接口
-      2. 在编辑器里面右键也会上传当前文件的接口
-      3. 选中controller文件夹，会上传当前文件夹下所有文件的接口
+      idea showdoc插件<br />
+      配置方式：<br />
+      1. 在setting->tools->showDocConfig中配置。<br />
+      2. 第一次使用时，会弹窗提示输入配置。<br />
+      3. 修改配置可以在.idea目录下的workspace.xml中的ShowDocConfig修改配置<br />
+      使用方式：<br />
+      1. 选中要上传接口的文件，右键。点击showDoc菜单，会上传单个文件的接口<br />
+      2. 在编辑器里面右键也会上传当前文件的接口<br />
+      3. 选中controller文件夹，会上传当前文件夹下所有文件的接口<br />
+      注释模板：<br />
+      在PHP文件中输入showdoc后tab键就可以了
       ]]></description>
 
 <!-- 插件更新日志 -->
   <change-notes><![CDATA[
-      20210123 构建第一个测试包
+      20210123 构建第一个测试包<br />
       20210110 启动项目
     ]]>
   </change-notes>
@@ -35,6 +38,8 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <defaultLiveTemplates file="/liveTemplates/showdoc.xml" />
+    <defaultLiveTemplatesProvider implementation="com.yuanshuai.idea.template.LiveTemplateProvider" />
+    <liveTemplateContext implementation="com.yuanshuai.idea.template.LiveTemplateContext" />
     <projectConfigurable groupId="tools" id="com.yuanshuai.idea.showdoc" instance="com.yuanshuai.idea.config.ShowDocConfigSetting"/>
     <projectService serviceImplementation="com.yuanshuai.idea.config.ShowDocState" />
   </extensions>

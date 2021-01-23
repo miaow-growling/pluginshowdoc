@@ -11,15 +11,15 @@ public class NotificationUtil {
     private static NotificationGroup notificationGroup = new NotificationGroup("Java2Json.NotificationGroup", NotificationDisplayType.BALLOON, true);
 
     public static void warnNotify(String message, Project project) {
-        Notifications.Bus.notifyAndHide(notificationGroup.createNotification(message, NotificationType.WARNING), project);
+        Notifications.Bus.notify(notificationGroup.createNotification(message, NotificationType.WARNING), project);
     }
 
     public static void infoNotify(String message, Project project) {
-        Notifications.Bus.notifyAndHide(notificationGroup.createNotification(message, NotificationType.INFORMATION), project);
+        Notifications.Bus.notify(notificationGroup.createNotification(message, NotificationType.INFORMATION), project);
     }
 
     public static void errorNotify(String message, Project project) {
-        Notifications.Bus.notifyAndHide(notificationGroup.createNotification(message, NotificationType.ERROR), project);
+        Notifications.Bus.notify(notificationGroup.createNotification(message, NotificationType.ERROR), project);
     }
 
 }
