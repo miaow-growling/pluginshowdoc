@@ -4,7 +4,7 @@
 <!-- 插件名称 -->
   <name>iedaShowdocPlugin</name>
 <!-- 插件版本 -->
-  <version>1.0.2</version>
+  <version>1.0.3</version>
 <!-- 插件提供者 -->
   <vendor email="yuanshuai@mybns.cn" url="">yuanshuai</vendor>
 <!-- 插件简介 -->
@@ -24,8 +24,9 @@
 
 <!-- 插件更新日志 -->
   <change-notes><![CDATA[
-      20210123 构建第一个测试包<br />
-      20210110 启动项目
+      1.0.3 增加showdoc图标<br />
+      1.0.2 构建第一个测试包<br />
+      1.0.0 启动项目
     ]]>
   </change-notes>
 
@@ -46,7 +47,7 @@
 
 <!-- 动作 -->
   <actions>
-    <action id="yuanshuai.idea.showdoc.generate" class="com.yuanshuai.idea.action.GenerateApiAction" text="showDoc" description="生成API">
+    <action id="yuanshuai.idea.showdoc.generate" class="com.yuanshuai.idea.action.GenerateApiAction" text="showDoc" description="生成API" icon="ShowDocIcons.SHOW_DOC">
       <add-to-group group-id="ProjectViewPopupMenuRefactoringGroup" anchor="last"/>
       <add-to-group group-id="EditorPopupMenu2" anchor="first"/>
     </action>
